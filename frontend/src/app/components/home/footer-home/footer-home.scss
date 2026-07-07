@@ -1,0 +1,29 @@
+:host {
+  position: absolute;
+  bottom: 0;
+  min-width: 100vw;
+}
+
+footer {
+  display: flex;
+  height: 3vh;
+  padding: 4px 8px;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+
+  border-top: 2px solid var(--bar-nso);
+  background-color: var(--hover-header-nso);
+
+  aside {
+    display: flex;
+    flex-direction: row;
+
+    app-button-bar {
+      height: 100%;
+    }
+
+    nav {
+    }
+  }
+}
