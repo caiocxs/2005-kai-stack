@@ -1,0 +1,70 @@
+@font-face {
+  font-family: 'PixelMplus10Bold';
+  src: url('../assets/fonts/PixelMplus10-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PixelMplus10';
+  src: url('../assets/fonts/PixelMplus10-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PixelMplus12';
+  src: url('../assets/fonts/PixelMplus12-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PixelMplus12Bold';
+  src: url('../assets/fonts/PixelMplus12-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Zpix';
+  src: url('../assets/fonts/zpix.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Metodica';
+  src: url('../assets/fonts/MedodicaRegular.otf') format('otf');
+}
+
+html {
+  font-family: 'Zpix', 'PixelMplus10', sans-serif;
+  image-rendering: pixelated;
+
+  --main-font: 'Zpix';
+  --alt-font: 'PixelMplus10';
+  --alt-font-bold: 'PixelMplus10Bold';
+  --alt-alt-font: 'PixelMplus12';
+  --alt-alt-font-bold: 'PixelMplus12Bold';
+  --metodica-font: 'Metodica';
+
+  --small: 12px;
+  --medium: 16px;
+  --big: 24px;
+
+  --border-nso: #7999ff;
+  --alt-border-nso: #4d23cf;
+  --hover-header-nso: #ffd4fe;
+  --hover-body-nso: #d0f3ff;
+  --content-nso: #ffedff;
+  --header-nso: #ededed;
+  --x-mark: #ff6969;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+label {
+  user-select: none;
+}
+
+h1,
+p {
+  font-family: var(--main-font);
+}
+
+.static {
+  cursor: default;
+}

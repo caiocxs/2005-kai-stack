@@ -1,0 +1,24 @@
+<div class="container btn">
+  <div class="frame static">
+    <header>
+      <div class="title">
+        <app-icon-selector [name]="iconName" [size]="18" />
+        <label>{{ name }}</label>
+      </div>
+      <nav>
+        <app-icon-selector name="minimize" [size]="18" class="btn" />
+        <app-icon-selector name="maximize" [size]="18" class="btn" />
+        <app-icon-selector name="x-mark" [size]="18" class="btn-close btn" />
+      </nav>
+    </header>
+    <div class="content static">
+      <ng-content></ng-content>
+    </div>
+  </div>
+  <div class="details">
+    <div class="rectangle big"></div>
+    <div class="rectangle"></div>
+    <div class="rectangle"></div>
+    <div class="rectangle"></div>
+  </div>
+</div>

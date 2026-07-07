@@ -1,0 +1,106 @@
+:host {
+  padding: 4px 8px;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  height: 14vh;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  #title {
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .temp {
+      width: 35vw;
+      height: 100%;
+
+      //background-color: var(--border-nso);
+      background-image: url(../../../../assets/logos/kainannon.gif);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      image-rendering: pixelated;
+    }
+  }
+
+  aside {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  app-profile-window {
+    width: 24vw;
+    height: 100%;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1120px) {
+  #left {
+    margin-bottom: 1vw;
+  }
+}
+
+@media (max-width: 1120px) {
+  header {
+    flex-direction: column;
+    height: fit-content;
+
+    aside {
+      display: flex;
+      justify-content: center;
+      width: 100vw;
+    }
+
+    #left {
+      order: 1;
+      height: 14vw;
+    }
+
+    app-profile-window {
+      width: 40%;
+    }
+
+    ::ng-deep app-navigation-link {
+      main .link .route {
+        width: 8vw;
+      }
+    }
+
+    #title {
+      height: 14vw;
+      width: max-content;
+      order: 0;
+
+      .temp {
+        width: 100vw;
+      }
+    }
+
+    #right {
+      order: 3;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  #left {
+    margin-bottom: 3vw;
+  }
+}
