@@ -1,4 +1,4 @@
-<button
+<span
   class="btn"
   (mousedown)="isPressed = true"
   (mouseup)="isPressed = false"
@@ -6,7 +6,4 @@
   [class.is-active]="isPressed"
   (touchstart)="isPressed = true"
   (touchend)="isPressed = false"
->
-  <app-icon-selector name="windows-logo" [size]="26"></app-icon-selector>
-  <label class="btn">START</label>
-</button>
+></span>

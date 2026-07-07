@@ -32,6 +32,12 @@ export class IconSelector {
         return '0 0 44 44';
       case 'home-route':
         return '0 0 20 19';
+      case 'windows-logo':
+        return '0 0 31 24';
+      case 'noon':
+      case 'morning':
+      case 'night':
+        return '0 0 11 11';
       default:
         return '0 0 15 15';
     }
