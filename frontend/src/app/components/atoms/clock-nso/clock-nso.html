@@ -7,6 +7,6 @@
   (touchstart)="isPressed = true"
   (touchend)="isPressed = false"
 >
-  <app-icon-selector name="windows-logo" [size]="26"></app-icon-selector>
-  <label class="btn">START</label>
+  <app-icon-selector [name]="(icon$ | async) || 'noon'" [size]="26" />
+  <label class="btn">{{ clock$ | async | date: 'HH:mm:ss' }}</label>
 </button>

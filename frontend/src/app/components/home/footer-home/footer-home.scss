@@ -6,7 +6,7 @@
 
 footer {
   display: flex;
-  height: 3vh;
+  height: auto;
   padding: 4px 8px;
   justify-content: space-between;
   align-items: center;
@@ -18,12 +18,43 @@ footer {
   aside {
     display: flex;
     flex-direction: row;
+    width: auto;
+    height: 100%;
+    gap: 8px;
 
-    app-button-bar {
-      height: 100%;
+    align-self: stretch;
+    align-items: stretch;
+
+    app-button-bar-nso,
+    app-clock-nso,
+    app-calendar-nso {
+      width: auto;
+    }
+
+    app-pipe-bar-nso {
+      width: 12px;
     }
 
     nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+
+      width: 100%;
+
+      ul {
+        list-style-type: none;
+      }
+    }
+  }
+
+  #left {
+    width: 40%;
+
+    app-pipe-bar-nso {
+      width: 12px;
+      min-width: 12px;
     }
   }
 }

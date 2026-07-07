@@ -7,4 +7,6 @@ import { IconSelector } from '../icon-selector/icon-selector';
   templateUrl: './button-bar-nso.html',
   styleUrl: './button-bar-nso.scss',
 })
-export class ButtonBarNso {}
+export class ButtonBarNso {
+  isPressed = false;
+}

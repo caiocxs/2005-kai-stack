@@ -1,10 +1,19 @@
 <footer>
-  <aside>
-    <app-button-bar-nso></app-button-bar-nso>
+  <aside id="left">
+    <app-button-bar-nso />
+    <app-pipe-bar-nso />
     <nav>
       <ul>
-        <li><app-icon-selector name="home" [size]="24"></app-icon-selector></li>
+        <li>
+          <app-icon-selector name="home" [size]="24" />
+        </li>
       </ul>
     </nav>
+    <app-pipe-bar-nso />
+  </aside>
+  <aside>
+    <app-calendar-nso />
+    <app-pipe-bar-nso />
+    <app-clock-nso />
   </aside>
 </footer>
