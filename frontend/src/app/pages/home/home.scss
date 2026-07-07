@@ -3,5 +3,14 @@
   background-image: url(../../../assets/bg/wallpaper.png);
   min-height: 100vh;
   min-width: 100vw;
+  width: 100vw;
   background-size: 4vw;
+}
+
+main {
+  padding-top: 4px;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
 }
