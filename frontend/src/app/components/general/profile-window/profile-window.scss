@@ -1,0 +1,44 @@
+:host {
+  min-width: 265px;
+}
+
+main {
+  display: flex;
+  align-self: stretch;
+  min-height: 0;
+
+  padding: 4px 8px;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+  align-self: stretch;
+  width: auto;
+  overflow-y: scroll;
+
+  .temp {
+    width: 15%;
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
+    min-width: 64px;
+
+    background-color: var(--border-nso);
+  }
+
+  article {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    gap: 1px;
+
+    h1 {
+      font-size: var(--small);
+      height: auto;
+    }
+
+    p {
+      font-size: var(--small);
+      white-space: pre-line;
+      height: auto;
+    }
+  }
+}

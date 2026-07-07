@@ -1,0 +1,11 @@
+<app-window-nso name="about me" iconName="profile">
+  <main>
+    <div class="temp"></div>
+    <article>
+      <h1>{{ title }}</h1>
+      @for (item of content; track $index) {
+        <p>{{ item }}</p>
+      }
+    </article>
+  </main>
+</app-window-nso>
