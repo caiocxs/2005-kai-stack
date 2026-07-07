@@ -1,0 +1,18 @@
+:host {
+  height: 100%;
+  width: 100%;
+}
+
+button {
+  background-color: var(--hover-header-nso);
+
+  border-top: 2px solid var(--bar-nso);
+  border-left: 2px solid var(--bar-nso);
+  border-bottom: 2px solid var(--border-nso);
+  border-right: 2px solid var(--border-nso);
+
+  display: flex;
+  flex-direction: row;
+  padding: 2px;
+  gap: 6px;
+}
