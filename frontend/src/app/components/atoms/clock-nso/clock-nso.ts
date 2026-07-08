@@ -11,7 +11,7 @@ import { AsyncPipe, DatePipe } from '@angular/common';
   styleUrl: './clock-nso.scss',
 })
 export class ClockNso {
-  isPressed = false;
+  isPressed = true;
 
   clock$: Observable<Date> = timer(0, 1000).pipe(map(() => new Date()));
 

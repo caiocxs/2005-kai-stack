@@ -70,3 +70,21 @@ p {
 .static {
   cursor: default;
 }
+
+.btn-bar-nso {
+  background-color: var(--hover-header-nso);
+
+  border-top: 2px solid var(--bar-nso);
+  border-left: 2px solid var(--bar-nso);
+  border-bottom: 2px solid var(--border-nso);
+  border-right: 2px solid var(--border-nso);
+
+  &.is-active,
+  &.is-active:hover {
+    background-color: var(--button-pressed-nso);
+    border-top: 2px solid var(--border-nso);
+    border-left: 2px solid var(--border-nso);
+    border-bottom: 2px solid var(--bar-nso);
+    border-right: 2px solid var(--bar-nso);
+  }
+}

@@ -4,13 +4,6 @@
 }
 
 button {
-  background-color: var(--hover-header-nso);
-
-  border-top: 2px solid var(--bar-nso);
-  border-left: 2px solid var(--bar-nso);
-  border-bottom: 2px solid var(--border-nso);
-  border-right: 2px solid var(--border-nso);
-
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -25,12 +18,4 @@ button {
     height: auto;
     padding: 0 12px 0 6px;
   }
-}
-
-.is-active {
-  background-color: var(--button-pressed-nso);
-  border-top: 2px solid var(--border-nso);
-  border-left: 2px solid var(--border-nso);
-  border-bottom: 2px solid var(--bar-nso);
-  border-right: 2px solid var(--bar-nso);
 }

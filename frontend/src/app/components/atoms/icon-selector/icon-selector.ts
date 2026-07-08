@@ -38,6 +38,8 @@ export class IconSelector {
       case 'morning':
       case 'night':
         return '0 0 11 11';
+      case 'home-mini':
+        return '0 0 14 12';
       default:
         return '0 0 15 15';
     }
