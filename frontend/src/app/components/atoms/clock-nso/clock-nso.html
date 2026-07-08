@@ -1,11 +1,11 @@
 <button
-  class="btn"
-  (mousedown)="isPressed = true"
-  (mouseup)="isPressed = false"
-  (mouseleave)="isPressed = false"
+  class="btn btn-bar-nso"
+  (mousedown)="isPressed = false"
+  (mouseup)="isPressed = true"
+  (mouseleave)="isPressed = true"
   [class.is-active]="isPressed"
-  (touchstart)="isPressed = true"
-  (touchend)="isPressed = false"
+  (touchstart)="isPressed = false"
+  (touchend)="isPressed = true"
 >
   <app-icon-selector [name]="(icon$ | async) || 'noon'" [size]="26" />
   <label class="btn">{{ clock$ | async | date: 'HH:mm:ss' }}</label>

@@ -1,0 +1,23 @@
+@use '../../../../styles/variables.scss' as *;
+:host {
+  display: flex;
+}
+
+:host {
+  aspect-ratio: 1/1;
+  padding: 1px;
+  height: auto;
+  box-sizing: border-box;
+  border-color: transparent;
+}
+
+:host:hover {
+  @extend .btn-bar-nso;
+}
+
+:host(.is-active),
+:host(.is-active):hover {
+  app-icon-selector {
+    opacity: 75%;
+  }
+}

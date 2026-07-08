@@ -45,13 +45,16 @@ footer {
 
       ul {
         list-style-type: none;
+        height: auto;
+
+        display: flex;
+        flex-direction: row;
+        gap: 2px;
       }
     }
   }
 
   #left {
-    width: 40%;
-
     app-pipe-bar-nso {
       width: 12px;
       min-width: 12px;
