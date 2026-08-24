@@ -154,3 +154,5 @@ env/
 # At repo root:
 backend/publish/
 backend/artifacts/
+
+backend/SQL.json
