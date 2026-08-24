@@ -26,3 +26,127 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# ====================================================================
+# Standard .gitignore for .NET / C# Backend (ASP.NET Core, EF Core, etc.)
+# ====================================================================
+
+# --------------------------------------------------
+# Build Results & Artifacts
+# --------------------------------------------------
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# --------------------------------------------------
+# .NET Core / ASP.NET Specific
+# --------------------------------------------------
+project.lock.json
+project.fragment.lock.json
+artifacts/
+publish/
+
+# Sensitive configuration & local app settings
+appsettings*.Development.json
+appsettings*.Local.json
+appsettings.Secrets.json
+secrets.json
+launchSettings.json.user
+
+# --------------------------------------------------
+# Entity Framework / Database
+# --------------------------------------------------
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# --------------------------------------------------
+# NuGet & Dependencies
+# --------------------------------------------------
+*.nupkg
+*.snupkg
+**/packages/*
+!**/packages/build/
+*.nuget.props
+*.nuget.targets
+.nuget/
+
+# --------------------------------------------------
+# Visual Studio / Visual Studio Code / JetBrains Rider / Editor
+# --------------------------------------------------
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+*.vspscc
+*.vssscc
+
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# JetBrains Rider / ReSharper
+.idea/
+*.DotSettings
+*.DotSettings.user
+_ReSharper*/
+
+# OmniSharp / LSP / Caches
+.omnisharp/
+.ccls-cache/
+.cache/
+
+# --------------------------------------------------
+# Test Results & Code Coverage
+# --------------------------------------------------
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.trx
+*.coverage
+*.coveragexml
+*.opencover.xml
+coverage/
+TestResults/
+.sonarqube/
+.sonar/
+
+# --------------------------------------------------
+# Operating System & Environment
+# --------------------------------------------------
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+*.env
+*.env.local
+*.env.*.local
+.venv/
+env/
+
+# --------------------------------------------------
+# Miscellaneous & Swap Files
+# --------------------------------------------------
+*.swp
+*.*~
+*.bak
+*.tmp
+*.log
