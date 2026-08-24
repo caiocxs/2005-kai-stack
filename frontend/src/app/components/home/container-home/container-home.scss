@@ -1,0 +1,43 @@
+:host {
+  display: flex;
+  flex: 1;
+}
+
+.wrapper {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+
+  padding: 0 0 64px 0;
+
+  aside {
+    box-sizing: border-box;
+    display: flex;
+    width: 15%;
+    height: 100%;
+    border: 2px solid var(--border-nso);
+    background-color: var(--border-nso);
+    background-size: cover;
+  }
+
+  #left {
+    border-right: none;
+  }
+
+  #right {
+    border-left: none;
+    transform: scaleX(-1);
+  }
+
+  main {
+    border: 2px solid var(--border-nso);
+    border-left: none;
+    border-right: none;
+
+    box-sizing: border-box;
+    display: flex;
+    width: 64%;
+    height: 100%;
+    background-color: var(--content-nso);
+  }
+}
