@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { IconSelector } from '../icon-selector/icon-selector';
 import { Observable, timer } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AsyncPipe, DatePipe } from '@angular/common';
+import { ClockService } from '../../../core/services/clock-service/clock.service';
 
 @Component({
   selector: 'app-clock-nso',
@@ -13,17 +14,8 @@ import { AsyncPipe, DatePipe } from '@angular/common';
 export class ClockNso {
   isPressed = true;
 
-  clock$: Observable<Date> = timer(0, 1000).pipe(map(() => new Date()));
+  private clockService = inject(ClockService);
 
-  icon$: Observable<string> = this.clock$.pipe(map((date: Date) => this.getIcon(date.getHours())));
-
-  private getIcon(hour: number): string {
-    if (hour > 5 && hour < 12) {
-      return 'morning';
-    } else if (hour > 12 && hour < 18) {
-      return 'noon';
-    } else {
-      return 'night';
-    }
-  }
+  clock$ = this.clockService.clock$;
+  icon$ = this.clockService.icon$;
 }

@@ -1,3 +1,5 @@
-<aside></aside>
-<main></main>
-<aside></aside>
+<div class="wrapper">
+  <aside id="left" [style.backgroundImage]="'url(./media/' + (icon$ | async) + '.png)'"></aside>
+  <main></main>
+  <aside id="right" [style.backgroundImage]="'url(./media/' + (icon$ | async) + '.png)'"></aside>
+</div>
