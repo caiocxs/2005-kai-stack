@@ -150,3 +150,7 @@ env/
 *.bak
 *.tmp
 *.log
+
+# At repo root:
+backend/publish/
+backend/artifacts/
