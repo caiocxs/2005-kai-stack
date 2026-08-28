@@ -25,6 +25,18 @@ public class AuthenticationController : ControllerBase
         return Ok(result);
     }
 
+    [HttpPost("login/email")]
+    [HttpPost("login-email")]
+    [HttpPost("login-with-email")]
+    public async Task<IActionResult> LoginWithEmail([FromBody] LoginWithEmailRequest request, CancellationToken cancellationToken)
+    {
+        var result = await _authService.LoginAsync(request, cancellationToken);
+        if (!result.Success)
+            return BadRequest(result);
+
+        return Ok(result);
+    }
+
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterRequest request, CancellationToken cancellationToken)
     {
