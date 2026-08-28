@@ -2,6 +2,8 @@ namespace Backend.Application.DTOs;
 
 public record LoginRequest(string Username, string Password);
 
+public record LoginWithEmailRequest(string Email, string Password);
+
 public record RegisterRequest(
     string Name,
     string Username,

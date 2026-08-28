@@ -60,6 +60,29 @@ public class UserRepository : IUserRepository
         return row?.ToEntity();
     }
 
+    public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
+    {
+        const string sql = """
+            SELECT
+                id AS Id,
+                name AS Name,
+                username AS Username,
+                email AS Email,
+                passwordHash AS PasswordHash,
+                permissions AS Permissions,
+                isLocked AS IsLocked,
+                accessFailedCount AS AccessFailedCount
+            FROM [kanannon].[dbo].[user]
+            WHERE email = @Email;
+            """;
+
+        using var connection = _connectionFactory.CreateConnection();
+        var row = await connection.QuerySingleOrDefaultAsync<UserDbModel>(
+            new CommandDefinition(sql, new { Email = email.ToLowerInvariant().Trim() }, cancellationToken: cancellationToken));
+
+        return row?.ToEntity();
+    }
+
     public async Task<IReadOnlyList<User>> GetAllAsync(CancellationToken cancellationToken = default)
     {
         const string sql = """
