@@ -39,5 +39,7 @@ public record UserDetailDto(
 public record AuthResult(
     bool Success,
     string? Message = null,
-    UserDto? User = null
+    UserDto? User = null,
+    string? Token = null,
+    DateTimeOffset? ExpiresAt = null
 );

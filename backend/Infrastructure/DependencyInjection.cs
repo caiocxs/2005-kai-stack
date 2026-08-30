@@ -1,3 +1,4 @@
+using Backend.Application.Interfaces;
 using Backend.Domain.Interfaces.Repositories;
 using Backend.Domain.Services;
 using Backend.Infrastructure.Data;
@@ -15,6 +16,7 @@ public static class DependencyInjection
         services.AddSingleton<IDbConnectionFactory, SqlConnectionFactory>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddSingleton<IPasswordHasher, AspNetPasswordHasher>();
+        services.AddSingleton<ITokenService, JwtTokenService>();
 
         return services;
     }

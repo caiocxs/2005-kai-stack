@@ -12,15 +12,18 @@ public class AuthenticationService : IAuthenticationService
   private readonly IUserRepository _userRepository;
   private readonly IPasswordHasher _hasher;
   private readonly IMapper _mapper;
+  private readonly ITokenService _tokenService;
 
   public AuthenticationService(
       IUserRepository userRepository,
       IPasswordHasher hasher,
-      IMapper mapper)
+      IMapper mapper,
+      ITokenService tokenService)
   {
     _userRepository = userRepository;
     _hasher = hasher;
     _mapper = mapper;
+    _tokenService = tokenService;
   }
 
   public async Task<AuthResult> LoginAsync(LoginRequest request, CancellationToken cancellationToken = default)
@@ -41,7 +44,8 @@ public class AuthenticationService : IAuthenticationService
         return new AuthResult(false, "Invalid username or password.");
 
       var userDto = _mapper.Map<UserDto>(user);
-      return new AuthResult(true, "Authentication successful.", userDto);
+      var (token, expiresAt) = _tokenService.GenerateToken(user);
+      return new AuthResult(true, "Authentication successful.", userDto, token, expiresAt);
     }
     catch (UnauthorizedAccessException ex)
     {
@@ -68,7 +72,8 @@ public class AuthenticationService : IAuthenticationService
         return new AuthResult(false, "Invalid email or password.");
 
       var userDto = _mapper.Map<UserDto>(user);
-      return new AuthResult(true, "Authentication successful.", userDto);
+      var (token, expiresAt) = _tokenService.GenerateToken(user);
+      return new AuthResult(true, "Authentication successful.", userDto, token, expiresAt);
     }
     catch (UnauthorizedAccessException ex)
     {
@@ -100,7 +105,8 @@ public class AuthenticationService : IAuthenticationService
       await _userRepository.CreateAsync(user, cancellationToken);
 
       var userDto = _mapper.Map<UserDto>(user);
-      return new AuthResult(true, "User created successfully.", userDto);
+      var (token, expiresAt) = _tokenService.GenerateToken(user);
+      return new AuthResult(true, "User created successfully.", userDto, token, expiresAt);
     }
     catch (ArgumentException ex)
     {
