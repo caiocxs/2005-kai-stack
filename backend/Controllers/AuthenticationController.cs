@@ -28,8 +28,6 @@ public class AuthenticationController : ControllerBase
     }
 
     [HttpPost("login/email")]
-    [HttpPost("login-email")]
-    [HttpPost("login-with-email")]
     public async Task<IActionResult> LoginWithEmail([FromBody] LoginWithEmailRequest request, CancellationToken cancellationToken)
     {
         var result = await _serviceManager.AuthenticationService.LoginAsync(request, cancellationToken);

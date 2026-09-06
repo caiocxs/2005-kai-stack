@@ -7,11 +7,11 @@ namespace Backend.Infrastructure.Repositories;
 
 public class UserRepository : IUserRepository
 {
-    private readonly IDbConnectionFactory _connectionFactory;
+    private readonly IUnitOfWorkConnectionProvider _connectionProvider;
 
-    public UserRepository(IDbConnectionFactory connectionFactory)
+    public UserRepository(IUnitOfWorkConnectionProvider connectionProvider)
     {
-        _connectionFactory = connectionFactory;
+        _connectionProvider = connectionProvider;
     }
 
     public async Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
@@ -30,9 +30,9 @@ public class UserRepository : IUserRepository
             WHERE id = @Id;
             """;
 
-        using var connection = _connectionFactory.CreateConnection();
+        var connection = await _connectionProvider.GetConnectionAsync(cancellationToken);
         var row = await connection.QuerySingleOrDefaultAsync<UserDbModel>(
-            new CommandDefinition(sql, new { Id = id }, cancellationToken: cancellationToken));
+            new CommandDefinition(sql, new { Id = id }, transaction: _connectionProvider.Transaction, cancellationToken: cancellationToken));
 
         return row?.ToEntity();
     }
@@ -53,9 +53,9 @@ public class UserRepository : IUserRepository
             WHERE username = @Username;
             """;
 
-        using var connection = _connectionFactory.CreateConnection();
+        var connection = await _connectionProvider.GetConnectionAsync(cancellationToken);
         var row = await connection.QuerySingleOrDefaultAsync<UserDbModel>(
-            new CommandDefinition(sql, new { Username = username }, cancellationToken: cancellationToken));
+            new CommandDefinition(sql, new { Username = username }, transaction: _connectionProvider.Transaction, cancellationToken: cancellationToken));
 
         return row?.ToEntity();
     }
@@ -76,9 +76,9 @@ public class UserRepository : IUserRepository
             WHERE email = @Email;
             """;
 
-        using var connection = _connectionFactory.CreateConnection();
+        var connection = await _connectionProvider.GetConnectionAsync(cancellationToken);
         var row = await connection.QuerySingleOrDefaultAsync<UserDbModel>(
-            new CommandDefinition(sql, new { Email = email.ToLowerInvariant().Trim() }, cancellationToken: cancellationToken));
+            new CommandDefinition(sql, new { Email = email.ToLowerInvariant().Trim() }, transaction: _connectionProvider.Transaction, cancellationToken: cancellationToken));
 
         return row?.ToEntity();
     }
@@ -98,9 +98,9 @@ public class UserRepository : IUserRepository
             FROM [kanannon].[dbo].[user];
             """;
 
-        using var connection = _connectionFactory.CreateConnection();
+        var connection = await _connectionProvider.GetConnectionAsync(cancellationToken);
         var rows = await connection.QueryAsync<UserDbModel>(
-            new CommandDefinition(sql, cancellationToken: cancellationToken));
+            new CommandDefinition(sql, transaction: _connectionProvider.Transaction, cancellationToken: cancellationToken));
 
         return rows.Select(r => r.ToEntity()).ToList();
     }
@@ -132,7 +132,7 @@ public class UserRepository : IUserRepository
             );
             """;
 
-        using var connection = _connectionFactory.CreateConnection();
+        var connection = await _connectionProvider.GetConnectionAsync(cancellationToken);
         await connection.ExecuteAsync(new CommandDefinition(
             sql,
             new
@@ -146,6 +146,7 @@ public class UserRepository : IUserRepository
                 user.IsLocked,
                 user.AccessFailedCount
             },
+            transaction: _connectionProvider.Transaction,
             cancellationToken: cancellationToken));
     }
 
@@ -163,7 +164,7 @@ public class UserRepository : IUserRepository
             WHERE id = @Id;
             """;
 
-        using var connection = _connectionFactory.CreateConnection();
+        var connection = await _connectionProvider.GetConnectionAsync(cancellationToken);
         await connection.ExecuteAsync(new CommandDefinition(
             sql,
             new
@@ -176,6 +177,7 @@ public class UserRepository : IUserRepository
                 user.IsLocked,
                 user.AccessFailedCount
             },
+            transaction: _connectionProvider.Transaction,
             cancellationToken: cancellationToken));
     }
 
@@ -186,10 +188,11 @@ public class UserRepository : IUserRepository
             WHERE id = @Id;
             """;
 
-        using var connection = _connectionFactory.CreateConnection();
+        var connection = await _connectionProvider.GetConnectionAsync(cancellationToken);
         await connection.ExecuteAsync(new CommandDefinition(
             sql,
             new { Id = id },
+            transaction: _connectionProvider.Transaction,
             cancellationToken: cancellationToken));
     }
 

@@ -1,7 +1,8 @@
-namespace Backend.Domain.Interfaces.Services
+namespace Backend.Domain.Interfaces.Services;
+
+public interface IUnitOfWork
 {
-  public interface IUnitOfWork
-  {
-    Task Commit(CancellationToken cancellationToken);
-  }
+    Task BeginTransactionAsync(CancellationToken cancellationToken = default);
+    Task CommitAsync(CancellationToken cancellationToken = default);
+    Task RollbackAsync(CancellationToken cancellationToken = default);
 }
