@@ -15,6 +15,7 @@ public static class DependencyInjection
     {
         services.AddSingleton<IDbConnectionFactory, SqlConnectionFactory>();
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IRepositoryManager, RepositoryManager>();
         services.AddSingleton<IPasswordHasher, AspNetPasswordHasher>();
         services.AddSingleton<ITokenService, JwtTokenService>();
 

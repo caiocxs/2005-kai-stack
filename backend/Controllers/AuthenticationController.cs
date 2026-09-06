@@ -10,17 +10,17 @@ namespace Backend.Controllers;
 [Route("api/[controller]")]
 public class AuthenticationController : ControllerBase
 {
-    private readonly IAuthenticationService _authService;
+    private readonly IServiceManager _serviceManager;
 
-    public AuthenticationController(IAuthenticationService authService)
+    public AuthenticationController(IServiceManager serviceManager)
     {
-        _authService = authService;
+        _serviceManager = serviceManager;
     }
 
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequest request, CancellationToken cancellationToken)
     {
-        var result = await _authService.LoginAsync(request, cancellationToken);
+        var result = await _serviceManager.AuthenticationService.LoginAsync(request, cancellationToken);
         if (!result.Success)
             return BadRequest(result);
 
@@ -32,7 +32,7 @@ public class AuthenticationController : ControllerBase
     [HttpPost("login-with-email")]
     public async Task<IActionResult> LoginWithEmail([FromBody] LoginWithEmailRequest request, CancellationToken cancellationToken)
     {
-        var result = await _authService.LoginAsync(request, cancellationToken);
+        var result = await _serviceManager.AuthenticationService.LoginAsync(request, cancellationToken);
         if (!result.Success)
             return BadRequest(result);
 
@@ -42,7 +42,7 @@ public class AuthenticationController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterRequest request, CancellationToken cancellationToken)
     {
-        var result = await _authService.RegisterAsync(request, cancellationToken);
+        var result = await _serviceManager.AuthenticationService.RegisterAsync(request, cancellationToken);
         if (!result.Success)
             return BadRequest(result);
 
