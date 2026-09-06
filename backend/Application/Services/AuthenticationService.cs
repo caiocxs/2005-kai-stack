@@ -9,18 +9,18 @@ namespace Backend.Application.Services;
 
 public class AuthenticationService : IAuthenticationService
 {
-  private readonly IUserRepository _userRepository;
+  private readonly IRepositoryManager _repositoryManager;
   private readonly IPasswordHasher _hasher;
   private readonly IMapper _mapper;
   private readonly ITokenService _tokenService;
 
   public AuthenticationService(
-      IUserRepository userRepository,
+      IRepositoryManager repositoryManager,
       IPasswordHasher hasher,
       IMapper mapper,
       ITokenService tokenService)
   {
-    _userRepository = userRepository;
+    _repositoryManager = repositoryManager;
     _hasher = hasher;
     _mapper = mapper;
     _tokenService = tokenService;
@@ -31,14 +31,14 @@ public class AuthenticationService : IAuthenticationService
     if (string.IsNullOrWhiteSpace(request.Username) || string.IsNullOrWhiteSpace(request.Password))
       return new AuthResult(false, "Username and password are required.");
 
-    var user = await _userRepository.GetByUsernameAsync(request.Username, cancellationToken);
+    var user = await _repositoryManager.UserRepository.GetByUsernameAsync(request.Username, cancellationToken);
     if (user is null)
       return new AuthResult(false, "Invalid username or password.");
 
     try
     {
       bool isValid = user.Authenticate(request.Password, _hasher);
-      await _userRepository.UpdateAsync(user, cancellationToken);
+      await _repositoryManager.UserRepository.UpdateAsync(user, cancellationToken);
 
       if (!isValid)
         return new AuthResult(false, "Invalid username or password.");
@@ -49,7 +49,7 @@ public class AuthenticationService : IAuthenticationService
     }
     catch (UnauthorizedAccessException ex)
     {
-      await _userRepository.UpdateAsync(user, cancellationToken);
+      await _repositoryManager.UserRepository.UpdateAsync(user, cancellationToken);
       return new AuthResult(false, ex.Message);
     }
   }
@@ -59,14 +59,14 @@ public class AuthenticationService : IAuthenticationService
     if (string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.Password))
       return new AuthResult(false, "Email and password are required.");
 
-    var user = await _userRepository.GetByEmailAsync(request.Email, cancellationToken);
+    var user = await _repositoryManager.UserRepository.GetByEmailAsync(request.Email, cancellationToken);
     if (user is null)
       return new AuthResult(false, "Invalid email or password.");
 
     try
     {
       bool isValid = user.Authenticate(request.Password, _hasher);
-      await _userRepository.UpdateAsync(user, cancellationToken);
+      await _repositoryManager.UserRepository.UpdateAsync(user, cancellationToken);
 
       if (!isValid)
         return new AuthResult(false, "Invalid email or password.");
@@ -77,17 +77,17 @@ public class AuthenticationService : IAuthenticationService
     }
     catch (UnauthorizedAccessException ex)
     {
-      await _userRepository.UpdateAsync(user, cancellationToken);
+      await _repositoryManager.UserRepository.UpdateAsync(user, cancellationToken);
       return new AuthResult(false, ex.Message);
     }
   }
 
   public async Task<AuthResult> RegisterAsync(RegisterRequest request, CancellationToken cancellationToken = default)
   {
-    var existingUser = await _userRepository.GetByUsernameAsync(request.Username, cancellationToken);
+    var existingUser = await _repositoryManager.UserRepository.GetByUsernameAsync(request.Username, cancellationToken);
     if (existingUser is not null)
       return new AuthResult(false, "Username is already in use.");
-    existingUser = await _userRepository.GetByEmailAsync(request.Email, cancellationToken);
+    existingUser = await _repositoryManager.UserRepository.GetByEmailAsync(request.Email, cancellationToken);
     if (existingUser is not null)
       return new AuthResult(false, "Email is already in use.");
 
@@ -102,7 +102,7 @@ public class AuthenticationService : IAuthenticationService
           _hasher
       );
 
-      await _userRepository.CreateAsync(user, cancellationToken);
+      await _repositoryManager.UserRepository.CreateAsync(user, cancellationToken);
 
       var userDto = _mapper.Map<UserDto>(user);
       var (token, expiresAt) = _tokenService.GenerateToken(user);
