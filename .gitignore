@@ -157,3 +157,5 @@ backend/artifacts/
 
 backend/SQL.json
 backend/appsettings*.json
+
+queries/
