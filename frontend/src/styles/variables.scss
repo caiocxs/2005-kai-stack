@@ -1,31 +1,39 @@
+$float-duration: 3s !default;
+$float-distance: 20px !default;
+$float-easing: ease-in-out !default;
+
+$float-hover-rotation: 360deg !default;
+$float-hover-duration: 0.6s !default;
+$float-hover-easing: cubic-bezier(0.34, 1.56, 0.64, 1) !default;
+
 @font-face {
   font-family: 'PixelMplus10Bold';
-  src: url('../assets/fonts/PixelMplus10-Bold.ttf') format('truetype');
+  src: url('../../assets/fonts/PixelMplus10-Bold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'PixelMplus10';
-  src: url('../assets/fonts/PixelMplus10-Regular.ttf') format('truetype');
+  src: url('../../assets/fonts/PixelMplus10-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'PixelMplus12';
-  src: url('../assets/fonts/PixelMplus12-Regular.ttf') format('truetype');
+  src: url('../../assets/fonts/PixelMplus12-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'PixelMplus12Bold';
-  src: url('../assets/fonts/PixelMplus12-Bold.ttf') format('truetype');
+  src: url('../../assets/fonts/PixelMplus12-Bold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Zpix';
-  src: url('../assets/fonts/zpix.ttf') format('truetype');
+  src: url('../../assets/fonts/zpix.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Metodica';
-  src: url('../assets/fonts/MedodicaRegular.otf') format('otf');
+  src: url('../../assets/fonts/MedodicaRegular.otf') format('otf');
 }
 
 html {
@@ -56,6 +64,7 @@ html {
 }
 
 .btn {
+  user-select: none;
   cursor: pointer;
 }
 

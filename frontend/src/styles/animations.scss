@@ -1,0 +1,43 @@
+@use './variables' as *;
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(var(0, 0), 0);
+  }
+  50% {
+    transform: translate(var(--float-x, 0), var(--float-distance));
+  }
+}
+
+@mixin float(
+  $duration: $float-duration,
+  $distance: $float-distance,
+  $easing: $float-easing,
+  $offset-x: 0,
+  $hover-rotation: $float-hover-rotation,
+  $hover-duration: $float-hover-duration,
+  $hover-easing: $float-hover-easing
+) {
+  --float-distance: #{$distance};
+  --float-x: #{$offset-x};
+
+  transform: translateX($offset-x);
+  rotate: 0deg;
+  animation: float $duration $easing infinite;
+  transition: rotate $hover-duration $hover-easing;
+
+  &:hover {
+    animation-play-state: paused;
+    rotate: $hover-rotation;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    transition: none;
+
+    &:hover {
+      rotate: 0deg;
+    }
+  }
+}
