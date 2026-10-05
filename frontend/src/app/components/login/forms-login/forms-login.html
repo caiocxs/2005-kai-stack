@@ -1,0 +1,24 @@
+<div id="container">
+  <form>
+    <app-random-icon id="profile-pic"></app-random-icon>
+    <div id="data">
+      <div class="inputs">
+        <label>{{ isEmailLogin() ? 'E-mail' : 'Username' }}</label>
+        <input type="text" />
+      </div>
+      <div class="inputs">
+        <label>Password</label>
+        <input type="text" />
+      </div>
+      <a class="btn" (click)="toggleMode.emit()"
+        >Login with {{ isEmailLogin() ? 'username' : 'e-mail' }}?</a
+      >
+    </div>
+  </form>
+  <div class="prop" id="lemon"></div>
+  <div class="btn prop" id="pink-lemon"></div>
+  <div class="prop" id="lemon-small"></div>
+  <div class="btn prop" id="heart"></div>
+  <div class="prop" id="cherry"></div>
+  <div class="btn prop" id="ribbon"></div>
+</div>
