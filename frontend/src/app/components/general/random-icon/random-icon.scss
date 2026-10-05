@@ -1,0 +1,10 @@
+:host,
+#icon-wrapper {
+  width: 100%;
+  height: 100%;
+
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-size: 102% 102%; // 51/50 — esconde a linha/coluna transparente dos ícones
+  image-rendering: pixelated;
+}
